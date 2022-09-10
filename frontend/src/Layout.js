@@ -34,6 +34,7 @@ import OrderListScreen from './screens/Dashboard/OrderListScreen'
 import HarvestScreen from './screens/Dashboard/HarvestScreen';
 import FarmerProduct from './screens/FarmerProducts/FarmerProducts';
 import MapScreen from './screens/Dashboard/MapScreen';
+import PredictComponent from './components/Predictor/Predict';
 
 const Layout = () => {
     return (
@@ -74,6 +75,7 @@ const Layout = () => {
                     <Route exact path="/farmers/lendMachines" component={Farmer_LendScreen} />
                     <Route exact path="/farmers/lendMachines/:id" component={LendMachineProduct} />
                     <Route exact path="/consumer/:id" component={ConsumerProductDetailScreen} />
+                    <Route exact path="/predict" component={PredictComponent} />
                 </Switch>
                 <Footer />
             </Router>
