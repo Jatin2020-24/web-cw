@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import {
     Form,
     Button,
@@ -7,80 +6,111 @@ import {
     Col
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../Message/Message'
-import Loader from '../Loader/Loader'
 import FormContainer from '../FormContainer/FormContainer'
-import { login } from '../../actions/userActions'
 import Meta from '../Helmet/Meta'
 
 const PredictComponent = ({ location, history }) => {
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    
+    const [nitrogen, setNitrogen] = useState('')
+    const [phosphorus, setPhosphorus] = useState('')
+    const [potassium, setPotassium] = useState('')
+    const [ph, setPh] = useState('')
+    const [temperature, setTemperature] = useState('')
+    const [rainfall, setRainfall] = useState('')
 
     const dispatch = useDispatch()
 
-    const userLogin = useSelector(state => state.userLogin)
-    const { loading, userInfo, error } = userLogin
-    const redirect = location.search ? location.search.split('=')[1] : '/'
-
-    useEffect(() => {
-        if (userInfo) {
-            history.push(redirect)
-        }
-    }, [userInfo, history, redirect])
-
+    function saveUser() {
+        console.warn({nitrogen,phosphorus,potassium,ph,temperature,rainfall});
+        let data = {nitrogen,phosphorus,potassium,ph,temperature,rainfall}
+        console.log(data)
+    }
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(login(email, password))
+        dispatch(saveUser())
     }
-
+    
     return (
         <FormContainer>
             <Meta
                 title="Agroic | Predict Crop Yield"
             />
             <h1 style={{ marginTop: '120px' }}>Predict</h1>
-            { error && <Message variant='danger'>{error}</Message>}
-            { loading && <Loader />}
+            {/* { error && <Message variant='danger'>{error}</Message>} */}
+            {/* { loading && <Loader />} */}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='nitrogen'>
                     <Form.Label>Nitrogen <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control
-                        type="nitrogen"
-                        placeholder="Enter email or NIC"
-                        value={email}
+                        type="text"
+                        placeholder="Enter Nitrogen contents in soil"
+                        value={nitrogen}
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setNitrogen(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='password'>
-                    <Form.Label>Password <span style={{ color: 'red' }}>*</span></Form.Label>
+
+                <Form.Group controlId='phosphorus'>
+                    <Form.Label>Phosphorus <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control
-                        type="password"
-                        placeholder="Enter password"
-                        value={password}
+                        type="text"
+                        placeholder="Enter Nitrogen contents in soil"
+                        value={phosphorus}
                         required
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setPhosphorus(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-                <Button type="submit" variant="primary">Sign In</Button>
+                <Form.Group controlId='potassium'>
+                    <Form.Label>Potassium <span style={{ color: 'red' }}>*</span></Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Potassium contents in soil"
+                        value={potassium}
+                        required
+                        onChange={(e) => setPotassium(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='ph'>
+                    <Form.Label>Ph value <span style={{ color: 'red' }}>*</span></Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter the ph of soil"
+                        value={ph}
+                        required
+                        onChange={(e) => setPh(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='temperature'>
+                    <Form.Label>Temperature <span style={{ color: 'red' }}>*</span></Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter the temperature"
+                        value={temperature}
+                        required
+                        onChange={(e) => setTemperature(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='rainfall'>
+                    <Form.Label>Rainfall <span style={{ color: 'red' }}>*</span></Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Total rainfall depth during a given period"
+                        value={rainfall}
+                        required
+                        onChange={(e) => setRainfall(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+                
             </Form>
             <Row className='py-3'>
-                <Col style={{ marginBottom: '30px' }}>
-                    New Customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
+                <Col style={{ marginBottom: '30px', marginLeft:'250px' }}>
+                    {/* <Link>Submit</Link> */}
+                    {/* to={redirect ? `/register?redirect=${redirect}` : '/register'} */}
+                     <button type='submit'>Submit</button>
                 </Col>
             </Row>
         </FormContainer>
-
-        // N: nitrogen
-        // P: phosphorus
-        // K: pottasium
-        // Temp
-        // Humidity
-        // Ph
-        // Rainfall
     )
 }
 
-export default PredictComponent
+  export default PredictComponent;
