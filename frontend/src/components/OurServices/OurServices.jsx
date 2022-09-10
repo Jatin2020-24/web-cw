@@ -10,10 +10,9 @@ import './ourSerices.css'
 const OurServices = () => {
     return (
         <Container className="main" fluid>
-            <h1 className="main-title">COMPREHENSIVE SERVICES</h1>
+            <h1 className="ma-in-title">COMPREHENSIVE SERVICES</h1>
             <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac nunc non arcu aliquet sollicitudin. Sed elementum placerat ex. Donec a lectus vel lectus faucibus mattis.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac nunc non arcu aliquet sollicitudin. Sed elementum placerat ex. Donec a lectus vel lectus faucibus mattis
+            Agriculture is one of the major sectors of the Indian economy. It is present in the country for thousands of years. Over the years it has developed and the use of new technologies and equipment replaced almost all the traditional methods of farming. Besides, in India, there are still some small farmers that use the old traditional methods of agriculture because they lack the resources to use modern methods. Furthermore, this is the only sector that contributed to the growth of not only itself but also of the other sector of the country.
             </p>
             <Container className="services">
                 <Row>
